@@ -2,13 +2,20 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #3498db;
+    background-color: #0272bd;
     color: #ecf0f1;
 }
 
+nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+    background-size: cover;
+    padding: 1em;
+}
 header {
     background-image: url(https://t3.ftcdn.net/jpg/06/17/08/62/360_F_617086272_rDe3izCcKb9wZlvm462Myd17uwLdqUNU.jpg);
-    background-size: cover; 
+    background-size: cover;
     padding: 1em;
     text-align: center;
 }
@@ -17,14 +24,6 @@ header img {
     max-width: 100px;
     height: auto;
     margin-bottom: 10px;
-}
-
-nav {
-    display: flex;
-    justify-content: space-around;
-    background-image: url(https://static.zoonar.com/img/www_repository3/80/65/0a/10_8a14954f620b45a781d497aab06a1913.jpg);
-    background-size: cover;
-    padding: 1em;
 }
 
 nav a {
@@ -36,8 +35,7 @@ nav a {
 }
 
 nav a:hover {
-    background-color:
-     #34495e;
+    background-color: rgba(219, 168, 0, 0.521);
 }
 
 section {
@@ -47,7 +45,7 @@ section {
 
 h2 {
     color: #ecf0f1;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 2px solid rgb(219, 168, 0);
     padding-bottom: 10px;
 }
 
@@ -81,30 +79,39 @@ button {
 }
 
 button {
-    background-color: #3498db;
-    color: #ecf0f1;
+    background-color: #ffd000;
+    color: rgb(255, 255, 255);
     border: none;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #be7303b0;
 }
 
 /* Added styles for job titles in the Apply section */
 form div {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 15px;
+    font-size: 20px;
 }
 
 form div input {
-    flex: 1;
+    flex: 0 0 auto;
+    margin-right: 10px;
 }
 
 form div label {
-    flex: 2;
-    margin-left: 10px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Adjusting label text alignment */
+form div label span {
+    margin-right: 10px;
 }
 
 /* Styles for modal */
@@ -146,37 +153,71 @@ form div label {
 }
 
 .bigger-text {
-font-size: 20px; }
+    font-size: 20px;
+}
 
 .bigger-text2 {
-font-size: 19px; }
-  
+    font-size: 19px;
+}
+
 .custom-font {
-font-family: 'Fantasy';
-font-size: 25px;
-  }
+    font-family: 'Fantasy';
+    font-size: 25px;
+}
 
 .custom-font2 {
-font-family: 'Lucida Console'
-  }
+    font-family: 'Lucida Console';
+}
 
 .custom-style {
-font-family: 'Times New Roman'; 
-font-size:25px; 
-  }
+    font-family: 'Times New Roman'; 
+    font-size: 25px; 
+}
 
 .benefits-specific {
     font-family: 'Fantasy'; 
-    font-size:35px; 
+    font-size: 35px; 
     text-align: center;
-      }
+}
+
 .atoverflux-specific {
     font-family: 'Fantasy'; 
-    font-size:25px; 
+    font-size: 25px; 
     text-align: center;
-          }
+}
+
 .webelieve-specific {
-        font-family: 'Times New Roman'; 
-        font-size:25px; 
-        text-align: center;
-                  }
+    font-family: 'Times New Roman'; 
+    font-size: 25px; 
+    text-align: center;
+}
+
+.custom-fontJobs {
+    font-family: 'Fantasy';
+    font-size: 75px;
+}
+
+#ProgrammerButton {
+    font-size: 45px;
+    font-family: 'Fantasy';
+    text-align: center;
+}
+
+#DesignerButton {
+    font-size: 45px;
+    font-family: 'Fantasy';
+    text-align: center;
+}
+
+#ModelerButton {
+    font-size: 45px;
+    font-family: 'Fantasy';
+    text-align: center;
+}
+#programmerCheckbox {
+    margin-left: -150px
+}
+#designerCheckbox {
+    margin-left: -150px}
+#modelerCheckbox {
+    margin-left: -150px}
