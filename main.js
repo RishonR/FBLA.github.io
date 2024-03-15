@@ -1,37 +1,40 @@
-// Navigation logic to show/hide sections based on navigation clicks
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+document.addEventListener("DOMContentLoaded", function() {
+    // Navigation logic to show/hide sections based on navigation clicks
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
 
-        // Hide all sections
-        document.querySelectorAll('section').forEach(section => {
-            section.style.display = 'none';
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Show the target section
+            const targetSectionId = this.getAttribute('href').substring(1);
+            document.getElementById(targetSectionId).style.display = 'block';
         });
+    });
 
-        // Show the target section
-        const targetSectionId = this.getAttribute('href').substring(1);
-        document.getElementById(targetSectionId).style.display = 'block';
+    // Additional navigation logic to show the initial section
+    document.getElementById('benefits').style.display = 'block';
+
+    // Job description toggle functionality
+    var jobButtons = document.querySelectorAll(".job-title");
+    jobButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            var jobInfo = this.nextElementSibling;
+            if (jobInfo.style.display === "none" || jobInfo.style.display === "") {
+                jobInfo.style.display = "block"; 
+                this.textContent = this.textContent.replace("▶", "▼");
+            } else {
+                jobInfo.style.display = "none"; 
+                this.textContent = this.textContent.replace("▼", "▶"); 
+            }
+        });
     });
 });
 
-// Additional navigation logic to show the initial section
-document.getElementById('benefits').style.display = 'block';
-
-// Other existing functions and event listeners
-function submitApplication() {
-    var jobTitle = document.querySelector('input[name="jobTitle"]:checked');
-    var fullName = document.getElementById('fullName').value;
-
-    if (jobTitle && fullName) {
-        // Optionally, you can perform other actions here
-    } else {
-        showErrorPopup();
-        return;
-    }
-
-    showModal();
-    hideErrorPopup();
-}
+// Form submission logic
 function submitApplication() {
     // Reset error message
     document.getElementById("errorPopup").style.display = "none";
@@ -43,16 +46,10 @@ function submitApplication() {
 
     // Check if all fields are filled
     if (jobTitle && fullName && email) {
-        // Display modal (you can customize this part based on your requirements)
+        // Display modal 
         document.getElementById("myModal").style.display = "block";
     } else {
         // Display error message
         document.getElementById("errorPopup").style.display = "block";
     }
 }
-
-function hideModal() {
-    // Hide modal
-    document.getElementById("myModal").style.display = "none";
-}
-// Other existing functions and event listeners
