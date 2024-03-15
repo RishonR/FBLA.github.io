@@ -10,17 +10,18 @@
 
 <body>
 
-    <header>
-        <img src="https://cdn.discordapp.com/attachments/1192607088032100473/1192987331855138836/image-removebg-preview.png?ex=65ab1308&is=65989e08&hm=00936ca91a645f3a886a3e99e5114a2859080d1e76f0dc776add5e103d3225fc">
-        <h1 class="custom-font2">Overflux Careers</h1>
-    </header>
-
     <nav>
         <a href="#benefits">Benefits</a>
         <a href="#jobs">Jobs</a>
         <a href="#policies">Policies</a>
         <a href="#apply">Apply</a>
     </nav>
+
+    <header>
+        <img src="https://cdn.discordapp.com/attachments/1192607088032100473/1192987331855138836/image-removebg-preview.png?ex=65fe2188&is=65ebac88&hm=81b242c4b1ec58f046a49421405334a42e52808f0d7b58ae42c357d05e09d8df&">
+        <h1 class="custom-font2">Overflux Careers</h1>
+    </header>
+
 
     <section id="benefits" style="display: block;">
         <div>
@@ -48,44 +49,53 @@
 
     <section id="jobs">
         <h2 class="bigger-text">Job Openings</h2>
-        <div>
-            <h3 class="bigger-text">Programmer</h3>
-
-            <p>
-                We are seeking a talented and experienced programmer to join our game development team. As a
-                Programmer at Overflux Studios, you will be responsible for designing, implementing, and maintaining
-                software solutions that contribute to innovative and engaging gaming experiences. The ideal candidate
-                should have a strong background in programming languages such as C++, Java, or Python and a passion for
-                creating high-quality games.
-            </p>
-            <img src="https://www.wgu.edu/content/dam/web-sites/blog-newsroom/blog/images/national/2019/june/changing-roles-of-software-developers.jpg" width="300px" height="200px">
+    
+        <div class="job-container">
+            <button id="ProgrammerButton" class="job-title">Programmer ▶</button>
+            <div class="job-info" style="display: none;">
+                <h3 class="bigger-text">Programmer</h3>
+                <p>
+                    We are seeking a talented and experienced programmer to join our game development team. As a
+                    Programmer at Overflux Studios, you will be responsible for designing, implementing, and maintaining
+                    software solutions that contribute to innovative and engaging gaming experiences. The ideal candidate
+                    should have a strong background in programming languages such as C++, Java, or Python and a passion for
+                    creating high-quality games.
+                </p>
+                <img src="https://www.wgu.edu/content/dam/web-sites/blog-newsroom/blog/images/national/2019/june/changing-roles-of-software-developers.jpg" width="300px" height="200px">
+            </div>
         </div>
-
-        <div>
-            <h3 class="bigger-text">Designer</h3>
-            <p>
-                Join our dynamic design team to shape the visual and artistic aspects of our games. As a Designer at
-                Overflux Studios, you will work on creating visually stunning and immersive designs for our gaming
-                products. The ideal candidate should have a keen eye for detail, proficiency in design tools such as
-                Adobe Creative Suite, and a passion for delivering exceptional user-centric designs in the gaming
-                industry.
-            </p>
-            <img src="https://a.storyblok.com/f/96206/6720x4480/9408ef5b87/ucd-pa-graphic-design-art-2.jpg/m/900x0/filters:quality/(60/)" width="300px" height="200px">
+    
+        <div class="job-container">
+            <button id="DesignerButton" class="job-title">Designer ▶</button>
+            <div class="job-info" style="display: none;">
+                <h3 class="bigger-text">Designer</h3>
+                <p>
+                    Join our dynamic design team to shape the visual and artistic aspects of our games. As a Designer at
+                    Overflux Studios, you will work on creating visually stunning and immersive designs for our gaming
+                    products. The ideal candidate should have a keen eye for detail, proficiency in design tools such as
+                    Adobe Creative Suite, and a passion for delivering exceptional user-centric designs in the gaming
+                    industry.
+                </p>
+                <img src="https://a.storyblok.com/f/96206/6720x4480/9408ef5b87/ucd-pa-graphic-design-art-2.jpg/m/900x0/filters:quality/(60/)" width="300px" height="200px">
+            </div>
         </div>
-
-        <div>
-            <h3 class="bigger-text">3D Modeler</h3>
-
-            <p>
-                We are looking for a skilled 3D Modeler to contribute to the development of realistic and captivating
-                game environments and characters. As a 3D Modeler at Overflux Studios, you will be involved in
-                creating 3D models, textures, and animations that enhance the overall gaming experience. The ideal
-                candidate should have expertise in 3D modeling software, an eye for detail, and a passion for
-                pushing the boundaries of visual storytelling in games.
-            </p>
-            <img src="https://tweakyourbiz.com/wp-content/uploads/2023/10/game-design-career-scaled-1.jpg" width="300px" height="200px">
+    
+        <div class="job-container">
+            <button id="ModelerButton"class="job-title">3D Modeler ▶</button>
+            <div class="job-info" style="display: none;">
+                <h3 class="bigger-text">3D Modeler</h3>
+                <p>
+                    We are looking for a skilled 3D Modeler to contribute to the development of realistic and captivating
+                    game environments and characters. As a 3D Modeler at Overflux Studios, you will be involved in
+                    creating 3D models, textures, and animations that enhance the overall gaming experience. The ideal
+                    candidate should have expertise in 3D modeling software, an eye for detail, and a passion for
+                    pushing the boundaries of visual storytelling in games.
+                </p>
+                <img src="https://tweakyourbiz.com/wp-content/uploads/2023/10/game-design-career-scaled-1.jpg" width="300px" height="200px">
+            </div>
         </div>
     </section>
+    
 
     <section id="policies" style="display: none;">
     <h2 class="custom-font">Overflux Studios Policies</h2>
@@ -170,33 +180,30 @@
 </section>
 
 
-    <section id="apply">
-        <h2>Online Job Application</h2>
-        <form id="applicationForm">
-            <label for="jobTitle">Select the Job you are applying for:</label>
-            <div>
-                <input type="radio" id="programmerCheckbox" name="jobTitle" value="Programmer">
-                <label for="programmerCheckbox">Programmer</label>
-            </div>
-            <div>
-                <input type="radio" id="designerCheckbox" name="jobTitle" value="Designer">
-                <label for="designerCheckbox">Designer</label>
-            </div>
-            <div>
-                <input type="radio" id="modelerCheckbox" name="jobTitle" value="3D Modeler">
-                <label for="modelerCheckbox">3D Modeler</label>
-            </div>
-
-            <label for="fullName">Full Name:</label>
-            <input type="text" id="fullName" name="fullName" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <div class="error-popup" id="errorPopup">Please fill out all fields.</div>
-
-            <button type="button" onclick="submitApplication()">Submit Application</button>
-        </form>
+<section id="apply">
+    <h2>Online Job Application</h2>
+    <form id="applicationForm">
+        <label for="jobTitle">Select the Job you are applying for:</label>
+        <div>
+            <input type="radio" id="programmerCheckbox" name="jobTitle" value="Programmer">
+            <label for="programmerCheckbox"><span>Programmer</span></label>
+        </div>
+        <div>
+            <input type="radio" id="designerCheckbox" name="jobTitle" value="Designer">
+            <label for="designerCheckbox"><span>Designer</span></label>
+        </div>
+        <div>
+            <input type="radio" id="modelerCheckbox" name="jobTitle" value="3D Modeler">
+            <label for="modelerCheckbox"><span>3D Modeler</span></label>
+        </div>
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <div class="error-popup" id="errorPopup">Please fill out all fields.</div>
+        <button type="button" onclick="submitApplication()">Submit Application</button>
+    </form>
+    
 
         <!-- Modal -->
         <div id="myModal" class="modal" onclick="hideModal()">
@@ -208,7 +215,7 @@
     </section>
 
     
-    <script src="main.js".js"></script>
+    <script src="main.js".js></script>
 
 </body>
 
