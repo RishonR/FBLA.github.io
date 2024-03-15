@@ -10,18 +10,18 @@
 
 <body>
 
+    
+    <header>
+        <img src="https://cdn.discordapp.com/attachments/1192607088032100473/1192987331855138836/image-removebg-preview.png?ex=65fe2188&is=65ebac88&hm=81b242c4b1ec58f046a49421405334a42e52808f0d7b58ae42c357d05e09d8df&">
+        <h1 class="custom-font2">Overflux Careers</h1>
+    </header>
+
     <nav>
         <a href="#benefits">Benefits</a>
         <a href="#jobs">Jobs</a>
         <a href="#policies">Policies</a>
         <a href="#apply">Apply</a>
     </nav>
-
-    <header>
-        <img src="https://cdn.discordapp.com/attachments/1192607088032100473/1192987331855138836/image-removebg-preview.png?ex=65fe2188&is=65ebac88&hm=81b242c4b1ec58f046a49421405334a42e52808f0d7b58ae42c357d05e09d8df&">
-        <h1 class="custom-font2">Overflux Careers</h1>
-    </header>
-
 
     <section id="benefits" style="display: block;">
         <div>
@@ -51,7 +51,7 @@
         <h2 class="bigger-text">Job Openings</h2>
     
         <div class="job-container">
-            <button id="ProgrammerButton" class="job-title">Programmer ▶</button>
+            <button class="job-title">Programmer ▶</button>
             <div class="job-info" style="display: none;">
                 <h3 class="bigger-text">Programmer</h3>
                 <p>
@@ -66,7 +66,7 @@
         </div>
     
         <div class="job-container">
-            <button id="DesignerButton" class="job-title">Designer ▶</button>
+            <button class="job-title">Designer ▶</button>
             <div class="job-info" style="display: none;">
                 <h3 class="bigger-text">Designer</h3>
                 <p>
@@ -81,7 +81,7 @@
         </div>
     
         <div class="job-container">
-            <button id="ModelerButton"class="job-title">3D Modeler ▶</button>
+            <button class="job-title">3D Modeler ▶</button>
             <div class="job-info" style="display: none;">
                 <h3 class="bigger-text">3D Modeler</h3>
                 <p>
@@ -180,30 +180,39 @@
 </section>
 
 
-<section id="apply">
-    <h2>Online Job Application</h2>
-    <form id="applicationForm">
-        <label for="jobTitle">Select the Job you are applying for:</label>
+    <section id="apply">
+        <h2>Online Job Application</h2>
+        <form id="applicationForm">
+            <label for="jobTitle">Select the Job you are applying for:</label>
+            <div>
+                <input type="radio" id="programmerCheckbox" name="jobTitle" value="Programmer">
+                <label for="programmerCheckbox">Programmer</label>
+            </div>
+            <div>
+                <input type="radio" id="designerCheckbox" name="jobTitle" value="Designer">
+                <label for="designerCheckbox">Designer</label>
+            </div>
+            <div>
+                <input type="radio" id="modelerCheckbox" name="jobTitle" value="3D Modeler">
+                <label for="modelerCheckbox">3D Modeler</label>
+            </div>
+
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
         <div>
-            <input type="radio" id="programmerCheckbox" name="jobTitle" value="Programmer">
-            <label for="programmerCheckbox"><span>Programmer</span></label>
+            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" style="display: none;" required>
+            <button type="button" onclick="document.getElementById('resume').click()">Upload Resume</button>
+            <span id="resumeFileName"></span>
         </div>
-        <div>
-            <input type="radio" id="designerCheckbox" name="jobTitle" value="Designer">
-            <label for="designerCheckbox"><span>Designer</span></label>
-        </div>
-        <div>
-            <input type="radio" id="modelerCheckbox" name="jobTitle" value="3D Modeler">
-            <label for="modelerCheckbox"><span>3D Modeler</span></label>
-        </div>
-        <label for="fullName">Full Name:</label>
-        <input type="text" id="fullName" name="fullName" required>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <div class="error-popup" id="errorPopup">Please fill out all fields.</div>
-        <button type="button" onclick="submitApplication()">Submit Application</button>
-    </form>
-    
+
+            <div class="error-popup" id="errorPopup">Please fill out all fields.</div>
+
+            <button type="button" onclick="submitApplication()">Submit Application</button>
+        </form>
 
         <!-- Modal -->
         <div id="myModal" class="modal" onclick="hideModal()">
