@@ -2,26 +2,40 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #0272bd;
+    background-color: rgb(37, 40, 46);
     color: #ecf0f1;
 }
 
 nav {
     display: flex;
     justify-content: space-around;
-    background-color: black;
+    background-image: url(https://vip-go.shutterstock.com/blog/wp-content/uploads/sites/5/2020/05/shutterstock_407554567.jpg?w=750);
     background-size: cover;
+    background-position: center;
     padding: 1em;
-}
+    z-index: -1; /* Ensure the background is behind other content */
+    animation: animateBackground 20s linear infinite; /* Adjust animation duration and timing function */
+    }
+
+    @keyframes animateBackground {
+        0% {
+            background-position: 0% 0%;
+        }
+        100% {
+            background-position: 100% 100%;
+        }
+    }
+
 header {
     background-image: url(https://t3.ftcdn.net/jpg/06/17/08/62/360_F_617086272_rDe3izCcKb9wZlvm462Myd17uwLdqUNU.jpg);
     background-size: cover;
+    background-position: middle;
     padding: 1em;
     text-align: center;
 }
 
 header img {
-    max-width: 100px;
+    max-width: 150px;
     height: auto;
     margin-bottom: 10px;
 }
@@ -65,9 +79,25 @@ form {
 
 label {
     display: block;
-    margin-bottom: 8px;
-    color: #a500f1;
+    margin-bottom: 10px;
+    font-size: 25px;
+    color: #fffb00;
 }
+
+applylabel {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 25px;
+    color: #000000;
+
+}
+applylabel {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 25px;
+    color: #000000;
+}
+
 
 input,
 textarea,
@@ -79,8 +109,8 @@ button {
 }
 
 button {
-    background-color: #ffd000;
-    color: rgb(255, 255, 255);
+    background-color: #0044ff;
+    color: yellow;
     border: none;
     cursor: pointer;
 }
@@ -160,6 +190,14 @@ form div label span {
     font-size: 19px;
 }
 
+.bigger-text3 {
+    font-size: 15px;
+}
+
+.bigger-text4 {
+    font-size: 25px;
+}
+
 .custom-font {
     font-family: 'Fantasy';
     font-size: 25px;
@@ -194,7 +232,24 @@ form div label span {
 
 .custom-fontJobs {
     font-family: 'Fantasy';
-    font-size: 75px;
+    font-size: 30px;
+    text-align: left;
+}
+
+.text-color {
+    color: rgb(0, 255, 221) 
+}
+
+.text-glow {
+    text-shadow: 0 0 15px #00ffff
+}
+
+.text-glow2 {
+    text-shadow: 0 0 5px #00ff73
+}
+
+.text-glow3 {
+    text-shadow: 0 0 5px rgb(255, 234, 0)
 }
 
 #ProgrammerButton {
@@ -202,7 +257,11 @@ form div label span {
     font-family: 'Fantasy';
     text-align: center;
 }
-
+#faq {
+    font-size: 45px;
+    font-family: 'Fantasy';
+    text-align: center;
+}
 #DesignerButton {
     font-size: 45px;
     font-family: 'Fantasy';
@@ -221,3 +280,44 @@ form div label span {
     margin-left: -150px}
 #modelerCheckbox {
     margin-left: -150px}
+    .search-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 80%;
+    }
+    
+    #search {
+        width: 80%;
+    }
+    
+    #minSalary {
+        width: calc(20% - 10px); /* Adjust as needed */
+    }
+    
+
+input {
+    font-size:  1rem;
+}
+
+.job-container {
+    border: 1px solid yellow;
+    padding: .5rem;
+
+}
+.hide {
+display: none ;
+}
+.salary-filter-wrapper {
+    display: flex;
+}
+
+.salary-filter-wrapper {
+    display: flex;
+}
+
+.salary-filter-wrapper label {
+    margin-right: 10px; /* Adjust this value as needed */
+    margin-left: 20px;
+}
+
