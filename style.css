@@ -109,8 +109,8 @@ button {
 }
 
 button {
-    background-color: #0044ff;
-    color: yellow;
+    background-color: #0077ff;
+    color: rgb(255, 196, 0);
     border: none;
     cursor: pointer;
 }
