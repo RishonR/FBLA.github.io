@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
+    
 
     // Search functionality
     document.getElementById('search').addEventListener('input', function() {
