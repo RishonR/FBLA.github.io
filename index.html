@@ -249,17 +249,15 @@
             </p>
         </div>
     </section>
-<section id="apply">
-    <h2 class="custom-style">Online Job Application</h2>
-    <form id="applicationForm"  method="post" >
+    <form id="applicationForm" method="post" action="send_email.php">
         <div>
-           <applylabel class="custom-style" for="jobTitle">Select the Job you are applying for:</applylabel>
+            <label class="custom-style" for="jobTitle">Select the Job you are applying for:</label>
         </div>
         <div>
-            <select id="jobTitle" name="jobTitle" class="custom-style" name= "job">
+            <select id="jobTitle" name="jobTitle" class="custom-style">
                 <option value="Programmer">Programmer</option>
                 <option value="Designer">Designer</option>
-                <option value="3D Animator ">3D Animator </option>
+                <option value="3D Animator">3D Animator</option>
                 <option value="Game Writer/Story Writer">Game Writer/Story Writer</option>
                 <option value="Level Designer">Level Designer</option>
                 <option value="Sound Designer/Audio Engineer">Sound Designer/Audio Engineer</option>
@@ -269,16 +267,11 @@
             </select>
         </div>
         <div>
-    
-            <applylabel class="custom-style" for="fullName">Full Name:</applylabel name="name">
-        </div>
-        <div>
+            <applylabel class="custom-style" for="fullName">Full Name:</applylabel>
             <input type="text" id="fullName" name="fullName" class="custom-style" required>
         </div>
         <div>
-            <applylabel class="custom-style" for="email">Email:</applylabel name="email">
-        </div>
-        <div>
+            <applylabel class="custom-style" for="email">Email:</applylabel>
             <input type="email" id="email" name="email" class="custom-style" required>
         </div>
         <div>
@@ -286,16 +279,14 @@
             <button type="button" class="custom-style" onclick="document.getElementById('resume').click()">Upload Resume</button>
             <label id="resumeFileName" class="custom-style"></label>
         </div>
+        <!-- Hidden input fields to store job title and applicant's email -->
+        <input type="hidden" id="selectedJob" name="selectedJob" value="">
+        <input type="hidden" id="applicantEmail" name="applicantEmail" value="">
         <div class="error-popup hide custom-style" id="errorPopup">Please fill out all fields.</div>
+        <div class="submit-success hide custom-style" id="submitSuccess">Successfully submited. Please check your email!.</div>
         <button type="submit" class="custom-style" onclick="submitApplication()">Submit Application</button>
     </form>
-    <!-- Modal -->
-    <div id="myModal" class="modal hide" onclick="hideModal()">
-        <div class="modal-content">
-            <p class="custom-style">Your application is being considered. Thank you!</p>
-        </div>
-    </div>
-</section>
+    
 
 <section id = "faq">
     <h2 class="benefits-specific">FAQ's (Frequently Asked Questions) </h2>
