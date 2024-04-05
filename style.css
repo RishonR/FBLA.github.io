@@ -27,15 +27,22 @@ nav {
     }
 
 header {
-    background-image: url(https://t3.ftcdn.net/jpg/06/17/08/62/360_F_617086272_rDe3izCcKb9wZlvm462Myd17uwLdqUNU.jpg);
+    background-image: url(https://static.vecteezy.com/system/resources/thumbnails/009/467/976/small/abstract-futuristic-gaming-background-for-offline-twitch-stream-vector.jpg);
     background-size: cover;
     background-position: middle;
     padding: 1em;
     text-align: center;
 }
 
+.header-image {
+    width: 100%; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensures the image takes up the full width of its container */
+    margin: 0 auto; /* Center the image horizontally */
+}
+
 header img {
-    max-width: 150px;
+    max-width: 250px;
     height: auto;
     margin-bottom: 10px;
 }
@@ -176,6 +183,13 @@ form div label span {
     margin-bottom: 15px;
 }
 
+.header-image {
+    width: 550%; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensures the image takes up the full width of its container */
+    
+}
+
 /* Styles for the benefits section */
 #benefits ul {
     list-style-type: disc;
@@ -202,7 +216,11 @@ form div label span {
     font-family: 'Fantasy';
     font-size: 25px;
 }
-
+.link {
+    font-family: 'Fantasy';
+    font-size: 30px;
+    color: #0077ff;
+}
 .custom-font2 {
     font-family: 'Lucida Console';
 }
