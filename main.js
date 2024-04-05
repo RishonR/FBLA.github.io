@@ -52,23 +52,46 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Form submission logic
 function submitApplication() {
-    // Reset error message
+    // Reset error message and success message
     document.getElementById("errorPopup").style.display = "none";
+    document.getElementById("submitSuccess").style.display = "none";
 
     // Get form values
-    var jobTitle = document.querySelector('input[name="jobTitle"]:checked');
+    var jobTitle = document.getElementById("jobTitle").value;
     var fullName = document.getElementById("fullName").value;
     var email = document.getElementById("email").value;
 
     // Check if all fields are filled
     if (jobTitle && fullName && email) {
-        // Display modal 
-        document.getElementById("myModal").style.display = "block";
+        // Send form data to PHP script using AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "process_application.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Display success message
+                    document.getElementById("submitSuccess").style.display = "block";
+
+                    // Reset form fields
+                    document.getElementById("jobTitle").value = ""; // Reset the job title selection if needed
+                    document.getElementById("fullName").value = "";
+                    document.getElementById("email").value = "";
+                    document.getElementById("resumeFileName").innerHTML = ""; // Reset the uploaded file name if needed
+                } else {
+                    // Display error message
+                    document.getElementById("errorPopup").style.display = "block";
+                }
+            }
+        };
+        var formData = "jobTitle=" + encodeURIComponent(jobTitle) + "&fullName=" + encodeURIComponent(fullName) + "&email=" + encodeURIComponent(email);
+        xhr.send(formData);
     } else {
         // Display error message
         document.getElementById("errorPopup").style.display = "block";
     }
 }
+
 document.getElementById("minSalary").addEventListener("input", searchJobs);
 document.getElementById("maxSalary").addEventListener("input", searchJobs);
 

@@ -182,7 +182,14 @@ form div label span {
     border-radius: 5px;
     margin-bottom: 15px;
 }
-
+.submitSuccess {
+    display: none;
+    background-color: #ffcccc; /* Light red background color */
+    color: #33ff00; /* Dark red text color */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
 .header-image {
     width: 550%; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
