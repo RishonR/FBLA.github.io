@@ -27,7 +27,7 @@ nav {
     }
 
 header {
-    background-image: url(https://img.freepik.com/free-photo/empty-dark-room-modern-futuristic-sci-fi-background_35913-2410.jpg?size=626&amp;ext=jpg&amp;ga=GA1.1.1224184972.1711670400&amp;semt=ais);
+    background-image: url(https://i.pinimg.com/originals/62/39/4d/62394d753859943e6a1a36443ef78795.gif);
     background-size: cover;
     background-position: bottom;
     padding: 1em;
@@ -220,6 +220,7 @@ form div label span {
     font-family: 'Fantasy';
     font-size: 30px;
     color: #0077ff;
+    line-height:  2em;
 }
 .custom-font2 {
     font-family: 'Lucida Console';
