@@ -257,15 +257,6 @@ form div label span {
     text-align: left;
 }
 
-.tab-content {
-    transition: opacity 0.5s ease-in-out;
-    opacity: 0;
-}
-
-.tab-content.active {
-    opacity: 1;
-}
-
 .text-color {
     color: rgb(0, 255, 221) 
 }
