@@ -261,6 +261,10 @@ form div label span {
     color: rgb(0, 255, 221) 
 }
 
+.green-text {
+    color: green;
+}
+
 .text-glow {
     text-shadow: 0 0 15px #00ffff
 }
