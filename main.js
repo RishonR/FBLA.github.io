@@ -9,49 +9,55 @@ document.addEventListener("DOMContentLoaded", function() {
                 section.style.display = 'none';
             });
 
-            // Show the target section
-            const targetSectionId = this.getAttribute('href').substring(1);
-            document.getElementById(targetSectionId).style.display = 'block';
-
             // Play sound
             const audio = new Audio('Wind-Shoowsh-Fast-www.fesliyanstudios.com.mp3');
             audio.play();
+
+            // Show the target section with a fade-in effect
+            const targetSectionId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetSectionId);
+            targetSection.style.opacity = '0';
+            targetSection.style.display = 'block';
+            setTimeout(() => {
+                targetSection.style.opacity = '1';
+            }, 100); // Adjust the delay if needed
         });
     });
 
     // Additional navigation logic to show the initial section
     document.getElementById('benefits').style.display = 'block';
 
-    // Job description toggle functionality
-    var jobButtons = document.querySelectorAll(".job-title");
-    jobButtons.forEach(function(button) {
-        button.addEventListener("click", function() {
-            var jobInfo = this.nextElementSibling;
-            if (jobInfo.style.display === "none" || jobInfo.style.display === "") {
-                jobInfo.style.display = "block"; 
-                this.textContent = this.textContent.replace("▶", "▼");
-            } else {
-                jobInfo.style.display = "none"; 
-                this.textContent = this.textContent.replace("▼", "▶"); 
-            }
-        });
-    });
+    // Rest of your JavaScript code...
+});
 
-    // Search functionality
-    document.getElementById('search').addEventListener('input', function() {
-        var searchTerm = this.value.toLowerCase();
-        var jobTitles = document.querySelectorAll('.job-title');
-        jobTitles.forEach(function(title) {
-            var jobTitleText = title.textContent.toLowerCase();
-            var jobContainer = title.closest('.job-container');
-            if (jobTitleText.includes(searchTerm)) {
-                jobContainer.style.display = 'block';
-            } else {
-                jobContainer.style.display = 'none';
-            }
-        });
+// Job description toggle functionality
+var jobButtons = document.querySelectorAll(".job-title");
+jobButtons.forEach(function(button) {
+    button.addEventListener("click", function() {
+        var jobInfo = this.nextElementSibling;
+        if (jobInfo.style.display === "none" || jobInfo.style.display === "") {
+            jobInfo.style.display = "block"; 
+            this.textContent = this.textContent.replace("▶", "▼");
+        } else {
+            jobInfo.style.display = "none"; 
+            this.textContent = this.textContent.replace("▼", "▶"); 
+        }
     });
-    
+});
+
+// Search functionality
+document.getElementById('search').addEventListener('input', function() {
+    var searchTerm = this.value.toLowerCase();
+    var jobTitles = document.querySelectorAll('.job-title');
+    jobTitles.forEach(function(title) {
+        var jobTitleText = title.textContent.toLowerCase();
+        var jobContainer = title.closest('.job-container');
+        if (jobTitleText.includes(searchTerm)) {
+            jobContainer.style.display = 'block';
+        } else {
+            jobContainer.style.display = 'none';
+        }
+    });
 });
 
 // Form submission logic
@@ -75,6 +81,7 @@ function submitApplication() {
     }
 }
 
+// Salary search functionality
 document.getElementById("minSalary").addEventListener("input", searchJobs);
 document.getElementById("maxSalary").addEventListener("input", searchJobs);
 
@@ -112,7 +119,3 @@ function searchJobs() {
         }
     }
 }
-
-// Remove the duplicate filterJobs() function
-document.getElementById("minSalary").addEventListener("change", filterJobs);
-document.getElementById("maxSalary").addEventListener("change", filterJobs);
