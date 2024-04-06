@@ -179,8 +179,8 @@ form div label span {
 }
 .submitSuccess {
     display: none;
-    background-color: #ffcccc; /* Light red background color */
-    color: #33ff00; /* Dark red text color */
+    background-color: #80ff86; /* Light green background color */
+    color: #004a04; /* Dark green text color */
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 15px;
@@ -344,8 +344,8 @@ display: none ;
 .applylabel {
     display: block;
     margin-bottom: 10px;
-    font-size: 25px;
+    font-size: 30px;
+    font-family: 'Times New Roman'; 
     color: #000000;
-    /* Add any other styles you want */
 }
 
