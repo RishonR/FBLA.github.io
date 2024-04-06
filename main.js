@@ -12,6 +12,10 @@ document.addEventListener("DOMContentLoaded", function() {
             // Show the target section
             const targetSectionId = this.getAttribute('href').substring(1);
             document.getElementById(targetSectionId).style.display = 'block';
+
+            // Play sound
+            const audio = new Audio('Wind-Shoowsh-Fast-www.fesliyanstudios.com.mp3');
+            audio.play();
         });
     });
 
@@ -112,4 +116,3 @@ function searchJobs() {
 // Remove the duplicate filterJobs() function
 document.getElementById("minSalary").addEventListener("change", filterJobs);
 document.getElementById("maxSalary").addEventListener("change", filterJobs);
-
