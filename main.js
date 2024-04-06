@@ -63,9 +63,8 @@ function submitApplication() {
 
     // Check if all fields are filled
     if (jobTitle && fullName && email) {
-    
-      document.getElementById("submitSuccess").style.display = "block";
-
+        // Display success message
+        document.getElementById("submitSuccess").style.display = "block";
     } else {
         // Display error message
         document.getElementById("errorPopup").style.display = "block";
@@ -109,54 +108,7 @@ function searchJobs() {
         }
     }
 }
-function filterJobs() {
-    var minSalary = parseFloat(document.getElementById('minSalary').value);
-    var maxSalary = parseFloat(document.getElementById('maxSalary').value);
 
-    var jobContainers = document.querySelectorAll('.job-container');
-
-    jobContainers.forEach(function(jobContainer) {
-        var jobInfo = jobContainer.querySelector('.job-info');
-        var salaryDiv = jobInfo.querySelector('.pay');
-        var salaryText = salaryDiv.textContent.trim().replace('Salary ', '');
-        var salaryRange = salaryText.split(' - ');
-        var minJobSalary = parseFloat(salaryRange[0].replace('$', '').replace(/,/g, ''));
-        var maxJobSalary = parseFloat(salaryRange[1].replace('$', '').replace(/,/g, ''));
-
-        if ((!isNaN(minSalary) && !isNaN(maxSalary)) &&
-            (minJobSalary >= minSalary && maxJobSalary <= maxSalary)) {
-            jobContainer.style.display = 'block';
-        } else {
-            jobContainer.style.display = 'none';
-        }
-    });
-}
+// Remove the duplicate filterJobs() function
 document.getElementById("minSalary").addEventListener("change", filterJobs);
 document.getElementById("maxSalary").addEventListener("change", filterJobs);
-
-function filterJobs() {
-    var minSalary = parseFloat(document.getElementById('minSalary').value);
-    var maxSalary = parseFloat(document.getElementById('maxSalary').value);
-
-    var jobContainers = document.querySelectorAll('.job-container');
-
-    jobContainers.forEach(function(jobContainer) {
-        var jobInfo = jobContainer.querySelector('.job-info');
-        var salaryDiv = jobInfo.querySelector('.pay');
-        var salaryText = salaryDiv.textContent.trim().replace('Salary ', '');
-        var salaryRange = salaryText.split(' - ');
-        var minJobSalary = parseFloat(salaryRange[0].replace('$', '').replace(/,/g, ''));
-        var maxJobSalary = parseFloat(salaryRange[1].replace('$', '').replace(/,/g, ''));
-
-        if ((!isNaN(minSalary) && !isNaN(maxSalary)) && (minJobSalary >= minSalary && maxJobSalary <= maxSalary)) {
-            jobContainer.style.display = 'block';
-        } else if((!isNaN(minSalary)) && (minJobSalary >= minSalary)) {
-            jobContainer.style.display = 'block';
-
-        } else if((!isNaN(maxSalary)) && (maxJobSalary <= maxSalary)){
-            jobContainer.style.display = 'block';
-        } else {
-            jobContainer.style.display = 'none';
-        }
-    });
-}
