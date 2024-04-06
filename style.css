@@ -98,12 +98,7 @@ applylabel {
     color: #000000;
 
 }
-applylabel {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 25px;
-    color: #000000;
-}
+
 
 
 input,
@@ -346,3 +341,11 @@ display: none ;
     margin-right: 10px; /* Adjust this value as needed */
     margin-left: 20px;
 }
+.applylabel {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 25px;
+    color: #000000;
+    /* Add any other styles you want */
+}
+
