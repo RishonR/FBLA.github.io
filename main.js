@@ -1,333 +1,182 @@
-<!DOCTYPE html>
-<html lang="en">
-    <script src="main.js" defer></script>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overflux Studios</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
+document.addEventListener("DOMContentLoaded", function() {
+    // Navigation logic to show/hide sections based on navigation clicks
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
 
-<body>
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
 
+            // Show the target section
+            const targetSectionId = this.getAttribute('href').substring(1);
+            document.getElementById(targetSectionId).style.display = 'block';
+        });
+    });
+
+    // Additional navigation logic to show the initial section
+    document.getElementById('benefits').style.display = 'block';
+
+    // Job description toggle functionality
+    var jobButtons = document.querySelectorAll(".job-title");
+    jobButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            var jobInfo = this.nextElementSibling;
+            if (jobInfo.style.display === "none" || jobInfo.style.display === "") {
+                jobInfo.style.display = "block"; 
+                this.textContent = this.textContent.replace("▶", "▼");
+            } else {
+                jobInfo.style.display = "none"; 
+                this.textContent = this.textContent.replace("▼", "▶"); 
+            }
+        });
+    });
+
+    // Search functionality
+    document.getElementById('search').addEventListener('input', function() {
+        var searchTerm = this.value.toLowerCase();
+        var jobTitles = document.querySelectorAll('.job-title');
+        jobTitles.forEach(function(title) {
+            var jobTitleText = title.textContent.toLowerCase();
+            var jobContainer = title.closest('.job-container');
+            if (jobTitleText.includes(searchTerm)) {
+                jobContainer.style.display = 'block';
+            } else {
+                jobContainer.style.display = 'none';
+            }
+        });
+    });
     
-    <header>
-        <img src="https://cdn.discordapp.com/attachments/1192607088032100473/1225284670615453756/OIG1-removebg-preview_1.png?ex=66209246&amp;is=660e1d46&amp;hm=431b97b3e80f18517926b69c5e6eccc1610b408ad016d5de603806a3d1a6fae0&amp" class="header-image glow">
-    </header>
+});
 
-    <nav>
-        <a href="#benefits" class="bigger-text4 text-glow2">Home</a>
-        <a href="#jobs" class="bigger-text4 text-glow2">Jobs</a>
-        <a href="#policies" class="bigger-text4 text-glow2">Policies</a>
-        <a href="#faq" class="bigger-text4 text-glow2">FAQ's</a>
-        <a href="#apply" class="bigger-text4 text-glow2">Apply</a>
-        <!-- Navigation Buttons -->
-    </nav>
+// Form submission logic
+function submitApplication() {
+    // Reset error message and success message
+    document.getElementById("errorPopup").style.display = "none";
+    document.getElementById("submitSuccess").style.display = "none";
 
-    <section id="benefits" style="display: block;">
-        <div>
-            <h2 class="benefits-specific custom-font2 text-color text-glow">Welcome to Overflux Studios!</h2>
-            <p class="atoverflux-specific text-glow2">At Overflux Studios, we value our employees and strive to provide a supportive and rewarding work environment. Joining our team comes with a range of benefits aimed at enhancing your well-being and fostering a positive workplace culture.
-            </p>
+    // Get form values
+    var jobTitle = document.getElementById("jobTitle").value;
+    var fullName = document.getElementById("fullName").value;
+    var email = document.getElementById("email").value;
 
-            <h3 class="custom-font">Employee Benefits:</h3>
-            <ul>
-                <li class="bigger-text"><strong>Competitive Salary Packages:</strong> We offer competitive salary packages to ensure that our employees are fairly compensated for their skills and contributions.</li>
-                <li class="bigger-text"><strong>Health and Dental Insurance Coverage:</strong> Your health matters. Our comprehensive health and dental insurance plans provide coverage for medical and dental expenses.</li>
-                <li class="bigger-text"><strong>401(k) Retirement Savings Plan:</strong> Plan for your future with our 401(k) savings plan, designed to help you build financial security and achieve your long-term goals.</li>
-                <li class="bigger-text"><strong>Paid Vacation and Holidays:</strong> Enjoy well-deserved time off with paid vacation days and holidays. We believe in the importance of rest and relaxation.</li>
-                <li class="bigger-text"><strong>Flexible Work Hours and Remote Work Options:</strong> Achieve a healthy work-life balance with flexible work hours and the option to work remotely when needed.</li>
-                <li class="bigger-text"><strong>Professional Development Opportunities:</strong> We invest in your growth. Access various professional development programs and resources to enhance your skills and advance your career.</li>
-                <li class="bigger-text"><strong>Collaborative and Innovative Work Culture:</strong> Join a dynamic team and contribute to innovative projects in a collaborative work culture that values creativity and teamwork.</li>
-                <!-- Add more benefits as needed -->
-            </ul>
-            <p class="webelieve-specific">We believe in a healthy work-life balance and understand that each team member contributes uniquely to our success. With our comprehensive benefits package, we aim to support your professional growth and personal well-being.</p>
-        </div>
-        </div>
-    </section>
-<section id="jobs">
-        <h2 class="bigger-text">Job Openings</h2>
-        <div class="search-wrapper" style="width: 100%; display: flex; justify-content: flex-end;">
-            <input type="search" id="search" placeholder="Search Jobs 🔍" style="width: 45vw; margin-left: 1vw;">
-            <input type="number" id="minSalary" style="width: 25vw; margin-left: 2vw;" placeholder="Min Salary">
-            <input type="number" id="maxSalary" style="width: 25vw; margin-left: 1vw; margin-right: 1vw;" placeholder="Max Salary">
-        </div>
-    
-        <div class="job-cards" data-job-cards-container> 
-            <div class="job-container">
-                        <button class= "job-title custom-fontJobs" >Designer ▶</button>
-                        <div class="job-info" style="display: none;">
-                            <h3 class="bigger-text">Designer</h3>
-                            <p>
-                                Join our dynamic design team to shape the visual and artistic aspects of our games. As a Designer at
-                                Overflux Studios, you will work on creating visually stunning and immersive designs for our gaming
-                                products. The ideal candidate should have a keen eye for detail, proficiency in design tools such as
-                                Adobe Creative Suite, and a passion for delivering exceptional user-centric designs in the gaming
-                                industry.
-                            </p>
-                            <div class="pay"> Salary $50,000 - $120,000</div>
-                            <img src="https://a.storyblok.com/f/96206/6720x4480/9408ef5b87/ucd-pa-graphic-design-art-2.jpg/m/900x0/filters:quality/(60/)" width="300px" height="200px">
-                        </div>
-                    </div>
-                    <div class="job-container">
-                        <button class="job-title custom-fontJobs">3D Modeler ▶</button>
-                        <div class="job-info" style="display: none;">
-                            <h3 class="bigger-text">3D Modeler</h3>
-                            <p>
-                                We are looking for a skilled 3D Modeler to contribute to the development of realistic and captivating
-                                game environments and characters. As a 3D Modeler at Overflux Studios, you will be involved in
-                                creating 3D models, textures, and animations that enhance the overall gaming experience. The ideal
-                                candidate should have expertise in 3D modeling software, an eye for detail, and a passion for
-                                pushing the boundaries of visual storytelling in games.
-                            </p>
-                            <div class="pay"> Salary $150,000</div>
-                            <img src="https://tweakyourbiz.com/wp-content/uploads/2023/10/game-design-career-scaled-1.jpg" width="300px" height="200px">
-                        </div>
-                    </div>
-                </div>
-                <div class="job-container">
-                <button class="job-title custom-fontJobs" >Programmer ▶</button>
-                <div class="job-info" style="display: none;">
-                    <p>
-                        We are seeking a talented and experienced programmer to join our game development team. As a
-                        Programmer at Overflux Studios, you will be responsible for designing, implementing, and maintaining
-                        software solutions that contribute to innovative and engaging gaming experiences. The ideal candidate
-                        should have a strong background in programming languages such as C++, Java, or Python and a passion for
-                        creating high-quality games.
-                    </p>
-                    <div class="pay"> Salary $100,000</div>
-                    <img src="https://www.wgu.edu/content/dam/web-sites/blog-newsroom/blog/images/national/2019/june/changing-roles-of-software-developers.jpg" width="300px" height="200px">
-                </div>
-            </div>
-            <div class="job-container">
-                <button class="job-title custom-fontJobs" >Animator ▶</button>
-                <div class="job-info" style="display: none;">
-                    <p>
-                        Animators are responsible for bringing characters, objects, and environments to life through animation. They create movement sequences and behaviors that enhance the player experience and communicate gameplay mechanics and narrative elements. Animators use a variety of techniques, including keyframe animation, motion capture, and procedural animation, to create lifelike and expressive animations. They work closely with game designers, artists, and programmers to integrate animations seamlessly into the game and ensure that they respond appropriately to player input and interactions.
-                    </p>
-                    <div class="pay"> Salary $120,000</div>
-                    <img src="https://wetmountaintribune.com/wp-content/uploads/2018/09/Aaron-Animating-In-TV-Paint.jpg" width="300px" height="200px">
-                </div>
-            </div>
-            <div class="job-container">
-                <button class="job-title custom-fontJobs" >Game Writer/Story Writer ▶</button>
-                <div class="job-info" style="display: none;">
-                    <p>
-                        Game writers, also known as story writers or narrative designers, are responsible for developing the narrative and dialogue for the game. They craft compelling stories, characters, and dialogue that immerse players in the game world and drive the gameplay experience forward. Game writers collaborate closely with game designers, artists, and programmers to ensure that the narrative aligns with the overall creative vision and gameplay mechanics of the game. They may also be responsible for writing scripts for cutscenes, quests, and other narrative elements of the game.
-                    </p>
-                    <div class="pay"> Salary $100,000</div>
-                    <img src="https://elnacain.com/wp-content/uploads/2020/02/video-game-writing-job-2.jpg" width="300px" height="200px">
-                </div>
-            </div>
-            <div class="job-container">
-                <button class="job-title custom-fontJobs" >Level Designer ▶</button>
-                <div class="job-info" style="display: none;">
-                    <p>
-                        Level designers are responsible for designing and creating the layout, structure, and challenges of game levels. They work closely with game designers to translate design concepts into playable environments that are engaging, balanced, and fun to explore. Level designers use level design tools and scripting languages to create gameplay spaces, puzzles, obstacles, and other interactive elements. They iterate on level designs based on playtesting feedback and collaborate with artists and programmers to integrate visual and interactive elements into the game world.
-                    </p>
-                    <div class="pay"> Salary $110,000</div>
-                    <img src="data:image/jpeg;base64,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" width="300px" height="200px">
-                </div>
-            </div>
-            <div class="job-container">
-                <button class="job-title custom-fontJobs" >Sound Designer/Audio Engineer ▶</button>
-                <div class="job-info" style="display: none;">
-                    <p>
-                        Sound designers and audio engineers are responsible for creating and implementing sound effects, music, and voiceovers for the game. They use a variety of tools and techniques, including Foley recording, digital audio editing, and interactive audio middleware, to create immersive and dynamic audio experiences. Sound designers collaborate closely with game designers, artists, and programmers to ensure that the audio aligns with the overall creative vision and gameplay mechanics of the game. They may also be responsible for optimizing audio performance, mixing audio tracks, and implementing audio triggers and cues throughout the game.
-                    </p>
-                    <div class="pay"> Salary $70,000</div>
-                    <img src="https://www.careersinfilm.com/wp-content/uploads/2018/02/sound-designer.jpg" width="300px" height="200px">
-                </div>
-            </div>
-            <div class="job-container">
-                <button class="job-title custom-fontJobs" >Game Tester ▶</button>
-                <div class="job-info" style="display: none;">
-                    <p>
-                        Game testers, also known as quality assurance (QA) testers, are responsible for identifying and reporting bugs, glitches, and other issues in the game. They conduct rigorous testing of gameplay mechanics, performance, and user interface elements to ensure that the game meets quality standards and player expectations. Game testers use a variety of testing methodologies, including manual testing, automated testing, and regression testing, to identify and reproduce issues across different platforms and configurations. They work closely with developers, artists, and designers to prioritize and resolve issues and ensure that the final product is polished and free of defects.
-                    </p>
-                    <div class="pay"> Salary $40,000</div>
-                    <img src="https://www.ziprecruiter.com/svc/fotomat/public-ziprecruiter/cms/655144716WorkFromHomeGameTester.jpg=ws1280x960" width="300px" height="200px">
-                </div>
-            </div>
-            <div class="job-container">
-                <button class="job-title custom-fontJobs" >Community Manager ▶</button>
-                <div class="job-info" style="display: none;">
-                    <p>
-                        Community managers are responsible for building and managing relationships with the game's community of players. They engage with players on social media, forums, and other online platforms to gather feedback, address concerns, and foster a positive and inclusive community atmosphere. Community managers work closely with developers, artists, and designers to communicate updates, announcements, and events to the player community. They may also be responsible for organizing community events, moderating forums and social media channels, and advocating for the needs and interests of the player community within the development team.
-                    </p>
-                    <div class="pay"> Salary $600,000</div>
-                    <img src="https://online.maryville.edu/wp-content/uploads/sites/97/2020/07/social-media-manager-1.jpg" width="300px" height="200px">
-                </div>
-            </div>
-            <div class="job-container">
-                <button class="job-title custom-fontJobs" >Marketing Manager ▶</button>
-                <div class="job-info" style="display: none;">
-                    <p>
-                        Marketing managers are responsible for developing and executing marketing strategies to promote the game and drive sales. They collaborate with stakeholders, including executives, publishers, and external partners, to define target audiences, messaging, and branding for the game. Marketing managers oversee the creation of advertising campaigns, trailers, screenshots, and other promotional materials to generate buzz and excitement around the game. They may also be responsible for managing relationships with influencers, media outlets, and promotional partners to amplify marketing efforts and reach new audiences.
-                    </p>
-                    <div class="pay"> Salary $850,000</div>
-                    <img src="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/wp-content/uploads/2022/05/Marketing.jpeg.jpg" width="300px" height="200px">
-                </div>
-            </div>
-     </section>
+    // Check if all fields are filled
+    if (jobTitle && fullName && email) {
+        // Send form data to PHP script using AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "process_application.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Display success message
+                    document.getElementById("submitSuccess").style.display = "block";
 
-        <section id="policies">
-             <div class="policies">
-                <div>
-            <a href= "https://drive.google.com/file/d/1PnoKwIb0g_iMAMMeBFQlv6mU3i9FAVuP/view" class= "link">Equal Opportunity Employment Policy:</a>
+                    // Reset form fields
+                    document.getElementById("jobTitle").value = ""; // Reset the job title selection if needed
+                    document.getElementById("fullName").value = "";
+                    document.getElementById("email").value = "";
+                    document.getElementById("resumeFileName").innerHTML = ""; // Reset the uploaded file name if needed
+                } else {
+                    // Display error message
+                    document.getElementById("errorPopup").style.display = "block";
+                }
+            }
+        };
+        var formData = "jobTitle=" + encodeURIComponent(jobTitle) + "&fullName=" + encodeURIComponent(fullName) + "&email=" + encodeURIComponent(email);
+        xhr.send(formData);
+    } else {
+        // Display error message
+        document.getElementById("errorPopup").style.display = "block";
+    }
+}
 
-            </div>
-            <div>
-            <a href= "https://drive.google.com/file/d/110Jiju_tIHqvNTFTy26ogR6-5Ya9cKDg/view?usp=sharing" class= "link">Code of Conduct:</a> 
-</div>
-            <div> 
-             <a href= "https://drive.google.com/file/d/1AJCTccYlcXruXe_F-Ptrc_PgQ7jtpQnf/view?usp=sharing" class= "link">Anti-Harassment and Anti-Discrimination Policy:</a>
-</div>
-<div>
+document.getElementById("minSalary").addEventListener("input", searchJobs);
+document.getElementById("maxSalary").addEventListener("input", searchJobs);
 
-             <a href= "https://drive.google.com/file/d/1fhXyXvh-XPiNrZQnAJUHbNkyDFeFmA3H/view?usp=sharing" class= "link">Workplace Health and Safety Policy:</a> 
-            </div>
-            <div>
+function searchJobs() {
+    var inputLocation = document.getElementById("location").value.toLowerCase();
+    var inputTitle = document.getElementById("jobTitle").value.toLowerCase();
+    var minSalary = parseFloat(document.getElementById("minSalary").value);
+    var maxSalary = parseFloat(document.getElementById("maxSalary").value);
 
-             <a href= "https://drive.google.com/file/d/12fVtEAmk5H8tg9t9TggFu79fmpAeqBX_/view?usp=sharing" class= "link">Remote Work Policy:</a>
-           </div>
-           <div>
-           <a href= "https://drive.google.com/file/d/12ndTk85KI4IEgaFpWp-iJH1CAMnTy_Wb/view?usp=sharing" class= "link">Intellectual Property Policy:</a>
-           </div>
-           <div>
-           <a href= "https://drive.google.com/file/d/1Vp9lmQMQ4AjXs8GKhmRat2pE4p5V52cB/view?usp=sharing" class= "link">Confidentiality and Non-Disclosure Agreement:</a>
-           </div>
-           <div>
-           <a href= "https://drive.google.com/file/d/1PDFmtvUnJ7Spe8Lj6fU9USYAym67y0cL/view?usp=sharing" class= "link">Performance Evaluation and Feedback Policy:</a>
-           </div>
-           <div>
-           <a href= "https://drive.google.com/file/d/1VFrBYtulNST8qftfdfYQAOIi-KxYPUkH/view?usp=sharing" class= "link">Social Media and Communications Policy:</a> 
-          </div>
-          <div>
-           <a href= "https://drive.google.com/file/d/1-1zWbXMJ4qZZS43HViv2DQttU3on3uHz/view?usp=sharing" class= "link">Data Protection and Privacy Policy:</a> 
-        </section> 
-           
-    <section id="apply"> 
-           <h2 class="custom-style">Online Job Application</h2> 
-           <form id="applicationForm" method="post"> 
-           <div> 
-           <applylabel class="custom-style" for="jobTitle">Select the Job you are applying for:</applylabel> 
-           </div> <div> <select id="jobTitle" name="jobTitle" class="custom-style" name= "job"> <option value="Programmer">Programmer</option> <option value="Designer">Designer</option> <option value="3D Animator ">3D Animator </option> <option value="Game Writer/Story Writer">Game Writer/Story Writer</option> <option value="Level Designer">Level Designer</option> <option value="Sound Designer/Audio Engineer">Sound Designer/Audio Engineer</option> <option value="Game Tester">Game Tester</option> <option value="Community Manager">Community Manager</option> <option value="Marketing Manager">Marketing Manager</option> </select> </div> <div> <applylabel class="custom-style" for="fullName">Full Name:</applylabel name="name"> </div> <div> <input type="text" id="fullName" name="fullName" class="custom-style" required> </div> <div> <applylabel class="custom-style" for="email">Email:</applylabel name="email"> </div> <div> <input type="email" id="email" name="email" class="custom-style" required> </div> <div> <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" style="display: none;" required> <button type="button" class="custom-style" onclick="document.getElementById('resume').click()">Upload Resume</button> <label id="resumeFileName" class="custom-style"></label> </div> <div class="error-popup hide custom-style" id="errorPopup">Please fill out all fields.</div> <button type="submit" class="custom-style" onclick="submitApplication()">Submit Application</button> </form> <!-- Modal --> <div id="myModal" class="modal hide" onclick="hideModal()"> <div class="modal-content"> <p class="custom-style">Your application is being considered. Thank you!</p> </div> </div> </section> <section id = "faq"> <h2 class="benefits-specific">FAQ's (Frequently Asked Questions) </h2> <div class="job-container"> <button class="job-title custom-fontJobs" >What kind of games does Overflux Studios develop? ▶</button> <div class="bigger-text" style="display: none;"> <p> Overflux Studios specializes in creating a wide range of games across various genres including action, adventure, strategy, simulation, role-playing, and more. We strive to cater to diverse gaming preferences and interests. </p> </div> </div> <div class="job-container"> <button class="job-title custom-fontJobs" >Are your games available on multiple platforms? ▶</button> <div class="bigger-text" style="display: none;"> <p> Yes, we aim to make our games as accessible as possible. Depending on the title, our games may be available on PC, console (PlayStation, Xbox, Nintendo Switch), and mobile platforms (iOS, Android). </p> </div> </div> <div class="job-container"> <button class="job-title custom-fontJobs" > How can I stay updated on new game releases and announcements? ▶</button> <div class="bigger-text" style="display: none;"> <p> You can stay informed about our latest game releases, updates, and announcements by following us on our official social media channels (Twitter, Facebook, Instagram) and subscribing to our newsletter on our website. </p> </div> </div> <div class="job-container"> <button class="job-title custom-fontJobs" >Are there any opportunities to get involved in beta testing or early access programs? ▶</button> <div class="bigger-text" style="display: none;"> <p> Yes, we occasionally run beta testing programs and early access initiatives for select titles. Keep an eye on our social media channels and website for announcements regarding such opportunities. </p> </div> </div> <div class="job-container"> <button class="job-title custom-fontJobs" >Does Overflux Studios offer multiplayer or online gameplay features? ▶</button> <div class="bigger-text" style="display: none;"> <p> Yes, many of our games feature multiplayer modes or online gameplay capabilities, allowing you to connect and play with friends or other players from around the world. </p> </div> </div> <div class="job-container"> <button class="job-title custom-fontJobs" >Are your games suitable for players of all ages? ▶</button> <div class="bigger-text" style="display: none;"> <p> While the suitability of our games may vary depending on factors such as content and age ratings, we strive to create experiences that can be enjoyed by players of diverse ages and backgrounds. </p> </div> </div> <div class="job-container"> <button class="job-title custom-fontJobs" >How can I get in touch with [Your Gaming Company] for business inquiries or partnership opportunities? ▶</button> <div class="bigger-text" style="display: none;"> <p> For business inquiries, partnership opportunities, or media-related inquiries, please reach out to us via email at akashbasam@gmail.com. </p> </div> </div> <div class="job-container"> <button class="job-title custom-fontJobs" >Do you have any plans for downloadable content (DLC) or expansions for your games? ▶</button> <div class="bigger-text" style="display: none;"> <p> We're always exploring ways to enhance the gaming experience for our players, including DLCs, expansions, and additional content updates. Stay tuned for announcements about upcoming DLCs and expansions for our games. </p> </div> </div> <div class="job-container"> <button class="job-title custom-fontJobs" > Does Overflux Studios offer cross-platform gaming support? ▶</button> <div class="bigger-text" style="display: none;"> <p> Yes, we understand the importance of allowing players to enjoy their favorite games across different platforms. Where feasible, we strive to implement cross-platform gaming support, enabling seamless gameplay experiences across PC, console, and mobile devices. </p> </div> </div> <div class="job-container"> <button class="job-title custom-fontJobs" >How does Overflux Studios prioritize diversity and inclusion in game development? ▶</button> <div class="bigger-text" style="display: none;"> <p> Diversity and inclusion are fundamental values at [Your Gaming Company]. We are committed to representing diverse perspectives, cultures, and experiences in our games and fostering inclusive gaming communities. Through thoughtful character design, narrative representation, and community engagement initiatives, we aim to create welcoming and inclusive spaces for all players. </p> </div> </div> </section> </body> </html>
-             </div>
-        <form id="applicationForm" method="post">
-            <div>
-             </div>
-            <div>
-            <applylabel class="custom-style" for="fullName">Full Name:</applylabel>
-            <div>
+    var jobs = document.getElementsByClassName("job");
 
-            </div>
-            <input type="text" id="fullName" name="fullName" class="custom-style" required>
-             </div>
-            <div>
-            <applylabel class="custom-style" for="email">Email:</applylabel>
-            <div>
+    for (var i = 0; i < jobs.length; i++) {
+        var job = jobs[i];
+        var jobLocation = job.dataset.location.toLowerCase();
+        var jobTitle = job.dataset.title.toLowerCase();
+        var salaryRange = job.dataset.salary.split("-").map(parseFloat);
 
-            </div>
-            <input type="email" id="email" name="email" class="custom-style" required>
-          </div>
-            <div>
-            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" style="display: none;">
-            <button type="button" class="custom-style" onclick="document.getElementById('resume').click()">Upload Resume</button>
-            <label id="resumeFileName" class="custom-style"></label>
-            </div>
-                 <div class="error-popup hide custom-style" id="errorPopup">Please fill out all fields.</div>
-            <div class="submit-success hide custom-style" id="submitSuccess">Successfully submited. Please check your email!.</div>
-            <button type="submit" class="custom-style" onclick="submitApplication()">Submit Application</button>
-        </form>
-</section>
+        var locationMatch = jobLocation.includes(inputLocation);
+        var titleMatch = jobTitle.includes(inputTitle);
+        var salaryMatch = false;
 
-<section id = "faq">
-    <h2 class="benefits-specific">FAQ's (Frequently Asked Questions) </h2>
-    
-    <div class="job-container">
-        <button class="job-title custom-fontJobs" >What kind of games does Overflux Studios develop? ▶</button>
-        <div class="bigger-text" style="display: none;">
-            <p>
-               Overflux Studios specializes in creating a wide range of games across various genres including action, adventure, strategy, simulation, role-playing, and more. We strive to cater to diverse gaming preferences and interests.
-            </p>
-        </div>
-    </div>
-    <div class="job-container">
-        <button class="job-title custom-fontJobs" >Are your games available on multiple platforms? ▶</button>
-        <div class="bigger-text" style="display: none;">
-            <p>
-                Yes, we aim to make our games as accessible as possible. Depending on the title, our games may be available on PC, console (PlayStation, Xbox, Nintendo Switch), and mobile platforms (iOS, Android).
-            </p>
-        </div>
-    </div>
-    <div class="job-container">
-        <button class="job-title custom-fontJobs" > How can I stay updated on new game releases and announcements? ▶</button>
-        <div class="bigger-text" style="display: none;">
-            <p>
-                You can stay informed about our latest game releases, updates, and announcements by following us on our official social media channels (Twitter, Facebook, Instagram) and subscribing to our newsletter on our website.
-            </p>
-        </div>
-    </div>
-    <div class="job-container">
-        <button class="job-title custom-fontJobs" >Are there any opportunities to get involved in beta testing or early access programs? ▶</button>
-        <div class="bigger-text" style="display: none;">
-            <p>
-                Yes, we occasionally run beta testing programs and early access initiatives for select titles. Keep an eye on our social media channels and website for announcements regarding such opportunities.
-            </p>
-        </div>
-    </div>
-    <div class="job-container">
-        <button class="job-title custom-fontJobs" >Does Overflux Studios offer multiplayer or online gameplay features? ▶</button>
-        <div class="bigger-text" style="display: none;">
-            <p>
-                Yes, many of our games feature multiplayer modes or online gameplay capabilities, allowing you to connect and play with friends or other players from around the world.
-            </p>
-        </div>
-    </div>
-    <div class="job-container">
-        <button class="job-title custom-fontJobs" >Are your games suitable for players of all ages? ▶</button>
-        <div class="bigger-text" style="display: none;">
-            <p>
-                While the suitability of our games may vary depending on factors such as content and age ratings, we strive to create experiences that can be enjoyed by players of diverse ages and backgrounds.
-            </p>
-        </div>
-    </div>
-    <div class="job-container">
-        <button class="job-title custom-fontJobs" >How can I get in touch with [Your Gaming Company] for business inquiries or partnership opportunities? ▶</button>
-        <div class="bigger-text" style="display: none;">
-            <p>
-                For business inquiries, partnership opportunities, or media-related inquiries, please reach out to us via email at akashbasam@gmail.com.
-            </p>
-        </div>
-    </div>
-    <div class="job-container">
-        <button class="job-title custom-fontJobs" >Do you have any plans for downloadable content (DLC) or expansions for your games? ▶</button>
-        <div class="bigger-text" style="display: none;">
-            <p>
-                We're always exploring ways to enhance the gaming experience for our players, including DLCs, expansions, and additional content updates. Stay tuned for announcements about upcoming DLCs and expansions for our games.
-            </p>
-        </div>
-    </div>
-    <div class="job-container">
-        <button class="job-title custom-fontJobs" > Does Overflux Studios offer cross-platform gaming support? ▶</button>
-        <div class="bigger-text" style="display: none;">
-            <p>
-                Yes, we understand the importance of allowing players to enjoy their favorite games across different platforms. Where feasible, we strive to implement cross-platform gaming support, enabling seamless gameplay experiences across PC, console, and mobile devices.
-            </p>
-        </div>
-    </div>
-    <div class="job-container">
-        <button class="job-title custom-fontJobs" >How does Overflux Studios prioritize diversity and inclusion in game development? ▶</button>
-        <div class="bigger-text" style="display: none;">
-            <p>
-                Diversity and inclusion are fundamental values at [Your Gaming Company]. We are committed to representing diverse perspectives, cultures, and experiences in our games and fostering inclusive gaming communities. Through thoughtful character design, narrative representation, and community engagement initiatives, we aim to create welcoming and inclusive spaces for all players.
-            </p>
-        </div>
-    </div>
+        if (isNaN(salaryRange[1])) {
+            // If only one salary value is provided, compare it with min and max salary input
+            salaryMatch = isNaN(minSalary) || isNaN(maxSalary) || (minSalary <= salaryRange[0] && maxSalary >= salaryRange[0]);
+        } else {
+            // If a salary range is provided, calculate the average and compare it with min and max salary input
+            var averageSalary = (salaryRange[0] + salaryRange[1]) / 2;
+            salaryMatch = isNaN(minSalary) || isNaN(maxSalary) || (minSalary <= averageSalary && maxSalary >= averageSalary);
+        }
 
-</section>
+        if (locationMatch && titleMatch && salaryMatch) {
+            job.style.display = "block";
+        } else {
+            job.style.display = "none";
+        }
+    }
+}
+function filterJobs() {
+    var minSalary = parseFloat(document.getElementById('minSalary').value);
+    var maxSalary = parseFloat(document.getElementById('maxSalary').value);
 
-</body>
+    var jobContainers = document.querySelectorAll('.job-container');
 
-</html>
+    jobContainers.forEach(function(jobContainer) {
+        var jobInfo = jobContainer.querySelector('.job-info');
+        var salaryDiv = jobInfo.querySelector('.pay');
+        var salaryText = salaryDiv.textContent.trim().replace('Salary ', '');
+        var salaryRange = salaryText.split(' - ');
+        var minJobSalary = parseFloat(salaryRange[0].replace('$', '').replace(/,/g, ''));
+        var maxJobSalary = parseFloat(salaryRange[1].replace('$', '').replace(/,/g, ''));
+
+        if ((!isNaN(minSalary) && !isNaN(maxSalary)) &&
+            (minJobSalary >= minSalary && maxJobSalary <= maxSalary)) {
+            jobContainer.style.display = 'block';
+        } else {
+            jobContainer.style.display = 'none';
+        }
+    });
+}
+document.getElementById("minSalary").addEventListener("change", filterJobs);
+document.getElementById("maxSalary").addEventListener("change", filterJobs);
+
+function filterJobs() {
+    var minSalary = parseFloat(document.getElementById('minSalary').value);
+    var maxSalary = parseFloat(document.getElementById('maxSalary').value);
+
+    var jobContainers = document.querySelectorAll('.job-container');
+
+    jobContainers.forEach(function(jobContainer) {
+        var jobInfo = jobContainer.querySelector('.job-info');
+        var salaryDiv = jobInfo.querySelector('.pay');
+        var salaryText = salaryDiv.textContent.trim().replace('Salary ', '');
+        var salaryRange = salaryText.split(' - ');
+        var minJobSalary = parseFloat(salaryRange[0].replace('$', '').replace(/,/g, ''));
+        var maxJobSalary = parseFloat(salaryRange[1].replace('$', '').replace(/,/g, ''));
+
+        if ((!isNaN(minSalary) && !isNaN(maxSalary)) && (minJobSalary >= minSalary && maxJobSalary <= maxSalary)) {
+            jobContainer.style.display = 'block';
+        } else if((!isNaN(minSalary)) && (minJobSalary >= minSalary)) {
+            jobContainer.style.display = 'block';
+
+        } else if((!isNaN(maxSalary)) && (maxJobSalary <= maxSalary)){
+            jobContainer.style.display = 'block';
+        } else {
+            jobContainer.style.display = 'none';
+        }
+    });
+}
