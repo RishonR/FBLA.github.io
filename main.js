@@ -30,20 +30,20 @@ document.addEventListener("DOMContentLoaded", function() {
     // Rest of your JavaScript code...
 });
 
-// Job description toggle functionality
-var jobButtons = document.querySelectorAll(".job-title");
-jobButtons.forEach(function(button) {
-    button.addEventListener("click", function() {
-        var jobInfo = this.nextElementSibling;
-        if (jobInfo.style.display === "none" || jobInfo.style.display === "") {
-            jobInfo.style.display = "block"; 
-            this.textContent = this.textContent.replace("▶", "▼");
-        } else {
-            jobInfo.style.display = "none"; 
-            this.textContent = this.textContent.replace("▼", "▶"); 
-        }
+/ Job description toggle functionality
+    var jobButtons = document.querySelectorAll(".job-title");
+    jobButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            var jobInfo = this.nextElementSibling;
+            if (jobInfo.style.display === "none" || jobInfo.style.display === "") {
+                jobInfo.style.display = "block"; 
+                this.textContent = this.textContent.replace("▶", "▼");
+            } else {
+                jobInfo.style.display = "none"; 
+                this.textContent = this.textContent.replace("▼", "▶"); 
+            }
+        });
     });
-});
 
 // Search functionality
 document.getElementById('search').addEventListener('input', function() {
