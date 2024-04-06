@@ -112,3 +112,23 @@ function searchJobs() {
 // Remove the duplicate filterJobs() function
 document.getElementById("minSalary").addEventListener("change", filterJobs);
 document.getElementById("maxSalary").addEventListener("change", filterJobs);
+
+// Add event listeners to navigation links to play sound on page switch
+document.addEventListener('DOMContentLoaded', function () {
+    const navigationLinks = document.querySelectorAll('nav a');
+    navigationLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default link behavior
+            const targetId = this.getAttribute('href').substring(1); // Get target section ID
+            const targetSection = document.getElementById(targetId);
+            const audio = new Audio('Wind-Shoowsh-Fast-www.fesliyanstudios.com.mp3'); // Create audio element
+            audio.play(); // Play sound
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Show the target tab content
+            targetSection.classList.add('active');
+        });
+    });
+});
